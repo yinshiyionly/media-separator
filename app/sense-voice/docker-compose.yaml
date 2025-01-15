@@ -1,0 +1,10 @@
+services:
+  audio-separator:
+    image: eleven9809/media-separator:cpu-v0.1
+    container_name: ms-cpu
+    volumes:
+      - ./iic:/app/iic # 将主机的 ./data 目录挂载到容器内的 /app/data
+      - ./example:/app/example
+    entrypoint: tail
+    command: ["-f", "/dev/null"]
+
