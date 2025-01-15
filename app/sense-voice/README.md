@@ -10,8 +10,8 @@
 │   └── more...  
 ├── docker-compose.yaml  
 ├── example  
-│   └── test-cn.wav  
-└── iic  
+│   └── test-cn.wav 
+└── iic 
     └── SenseVoiceSmall  
 
 - Dockerfile-sense-voice dockerfile 文件
