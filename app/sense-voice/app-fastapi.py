@@ -19,7 +19,7 @@ class AudioProcessor:
     def __init__(self, model_dir: str, device: str = "cuda:0"):
         self.model = AutoModel(
             model=model_dir,
-            trust_remote_code=False,
+            trust_remote_code=True,
             remote_code="/app/code/model.py",
             vad_model="fsmn-vad",
             vad_kwargs={"max_single_segment_time": 30000},

@@ -17,4 +17,4 @@ COPY . /app/
 # Run audio-separator when the container launches
 # ENTRYPOINT ["audio-separator"]
 # 执行 Python 脚本
-CMD ["python", "fastapi.py"]
+CMD ["python", "app-fastapi.py"]

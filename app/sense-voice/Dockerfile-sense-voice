@@ -14,5 +14,5 @@ RUN pip install -r requirements.txt
 EXPOSE 8000
 
 # 运行应用程序
-CMD ["python", "fastapi.py"]
+CMD ["python", "app-fastapi.py"]
 

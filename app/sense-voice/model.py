@@ -867,7 +867,7 @@ class SenseVoiceSmall(nn.Module):
         for i in range(b):
             x = ctc_logits[i, : encoder_out_lens[i].item(), :]
             yseq = x.argmax(dim=-1)
-            yseq = torch.unique_consecutive(yseq, dim=-1)
+            yseq = torch.unique_consecutive(yseq[4:], dim=-1)
 
             ibest_writer = None
             if kwargs.get("output_dir") is not None:
