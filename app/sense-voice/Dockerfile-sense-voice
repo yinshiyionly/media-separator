@@ -7,6 +7,8 @@ WORKDIR /app
 # 将当前目录下的所有文件和子目录复制到容器的 /app 目录
 COPY . /app/
 
+RUN echo "Current directory:" && pwd
+RUN echo "Contents of /app/code" && ls -l /app/code
 # 安装依赖
 RUN pip -v install -r /app/code/requirements.txt
 
