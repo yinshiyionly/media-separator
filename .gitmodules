@@ -1,3 +1,0 @@
-[submodule "app/sense-voice/code"]
-    path = app/sense-voice/code
-    url = https://github.com/FunAudioLLM/SenseVoice.git
