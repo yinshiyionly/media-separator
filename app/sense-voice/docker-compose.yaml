@@ -1,7 +1,7 @@
 services:
   audio-separator:
-    image: eleven9809/media-separator:cpu-v0.1
-    container_name: ms-cpu
+    image: eleven9809/sense-voice:cpu-v0.2
+    container_name: sv-cpu
     volumes:
       - ./iic:/app/iic # 将主机的 ./data 目录挂载到容器内的 /app/data
       - ./example:/app/example

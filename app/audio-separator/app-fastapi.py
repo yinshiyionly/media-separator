@@ -95,7 +95,7 @@ processor = AudioSeparatorProcessor()
 async def separate_audio(
         model: str = Form(...),
         file: Optional[UploadFile] = None,
-        url: Optional[HttpUrl] = None
+        url: Optional[str] = Form(None)
 ):
     if not file and not url:
         raise HTTPException(
