@@ -8,10 +8,11 @@ WORKDIR /app
 COPY . /app/
 
 # 安装依赖
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt && \
+    pip install aiohttp
 
 # 暴露端口
-EXPOSE 8000
+EXPOSE 6001
 
 # 运行应用程序
 CMD ["python", "app-fastapi.py"]

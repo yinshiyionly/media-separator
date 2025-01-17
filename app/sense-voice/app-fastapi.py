@@ -111,5 +111,5 @@ async def upload_audio(
 if __name__ == "__main__":
     import uvicorn
 
-    print("\nAPI Documentation available at: http://127.0.0.1:8000/docs\n")
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    print("\nAPI Documentation available at: http://127.0.0.1:6001/docs\n")
+    uvicorn.run(app, host="0.0.0.0", port=6001)

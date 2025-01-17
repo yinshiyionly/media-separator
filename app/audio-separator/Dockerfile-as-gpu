@@ -11,6 +11,11 @@ COPY . .
 
 # 第二阶段：运行时精简环境
 FROM python:3.11-slim
+
 WORKDIR /app
+
 COPY --from=builder /app /app
+
+EXPOSE 6000
+
 CMD ["python", "app-fastapi.py"]

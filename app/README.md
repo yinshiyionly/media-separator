@@ -11,6 +11,9 @@
 
 
 
+### 服务规范
+1. audio-separator 容器简称 as, 区分 CPU 和 GPU 版本, 暴露端口 6000
+2. sense-voice 容器简称 sv,暴露端口 6001
 1. 统一端口号 8000 8001
 2. sv 缺少 aiohttp
 3. 代码文件映射
