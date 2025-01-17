@@ -6,6 +6,5 @@ services:
       - ../../app:/mnt/audio
     ports:
       - "6002:6002"
-    entrypoint: tail
-    command: [ "-f", "/dev/null" ]
+    command: [ "python", "/app/app.py" ]
 
