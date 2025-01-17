@@ -8,7 +8,7 @@ import os
 from typing import Optional, Union
 import tempfile
 from pathlib import Path
-
+import time
 
 class ApiResponse(BaseModel):
     message: str
@@ -32,6 +32,8 @@ class AudioSeparatorProcessor:
 
         self.separator = Separator(
             log_level=logging.INFO,
+            # Vocals 只输出人声
+            # Instrumental 只输出器乐
             output_single_stem="Vocals",
             model_file_dir=model_dir,
             output_dir=output_dir
@@ -75,7 +77,17 @@ class AudioSeparatorProcessor:
     def process_audio(self, input_file: str, model: str) -> list[str]:
         """处理音频文件"""
         self.separator.load_model(model_filename=model)
-        return self.separator.separate(input_file)
+        # 获取当前时间戳
+        current_time = time.time()
+
+        # 生成唯一标识并确保长度为10位
+        random_str = hex(hash(current_time))[2:].zfill(10)[:10]
+
+        output_names = {
+            "Vocals": f"vocals_output_{random_str}",
+            # "Instrumental": f"instrumental_output_{random_str}"
+        }
+        return self.separator.separate(input_file, output_names)
 
     def cleanup(self, file_path: str):
         """清理临时文件"""
@@ -122,7 +134,7 @@ async def separate_audio(
 
         return {
             "message": "Audio separation completed successfully",
-            "output_files": output_files
+            "output_files": [f"http://8.130.117.208:6002/audio-separator/data/audio-separator-outputs/{output_files[0]}/?secret=ngTrHcTboVfQ"],
         }
 
     except Exception as e:

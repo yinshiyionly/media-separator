@@ -29,6 +29,7 @@ services:
       - NVIDIA_DRIVER_CAPABILITIES=compute,utility
     volumes:
       - ./data:/tmp
+      - ./app-fastapi.py:/app/app-fastapi.py
     ports:
       - "6000:6000"
     entrypoint: tail
