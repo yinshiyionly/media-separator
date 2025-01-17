@@ -8,13 +8,13 @@ PORT = 6002        # 端口号
 # 设置静态文件目录
 DIRECTORY = "/mnt/audio/media-separator"
 
-class MyHandler(http.server.SimpleHTTPRequestHandler):
+class StaticFileServe(http.server.SimpleHTTPRequestHandler):
     def translate_path(self, path):
         # 修改默认的路径来返回自定义的静态文件目录
         path = super().translate_path(path)
         return path.replace(self.directory, DIRECTORY)
 
 # 设置服务器
-with socketserver.TCPServer((HOST, PORT), MyHandler) as httpd:
+with socketserver.TCPServer((HOST, PORT), StaticFileServe) as httpd:
     print(f"Serving on {HOST}:{PORT}")
     httpd.serve_forever()
