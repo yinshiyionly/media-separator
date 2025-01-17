@@ -21,6 +21,6 @@ services:
       - ./model.py:/app/model.py
     ports:
       - "6001:6001"
-    entrypoint: tail
-    command: [ "-f", "/dev/null" ]
+    #    entrypoint: tail
+    command: [ "python", "/app/app-fastapi.py" ]
 

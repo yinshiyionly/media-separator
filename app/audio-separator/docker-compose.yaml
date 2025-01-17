@@ -32,5 +32,5 @@ services:
       - ./app-fastapi.py:/app/app-fastapi.py
     ports:
       - "6000:6000"
-    entrypoint: tail
-    command: [ "-f", "/dev/null" ]
+    #    entrypoint: tail
+    command: [ "python", "/app/app-fastapi.py" ]
