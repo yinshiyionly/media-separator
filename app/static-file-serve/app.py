@@ -12,7 +12,7 @@ HOST = '0.0.0.0'  # 监听所有IP地址
 PORT = 6002        # 端口号
 
 # 从环境变量中获取 SECRET_KEY
-DIRECTORY = "/mnt/audio/media-separator"
+DIRECTORY = "/mnt/audio"
 
 # 固定的secret密钥
 SECRET_KEY = os.getenv('SECRET_KEY', 'default_secret')
