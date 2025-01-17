@@ -1,5 +1,6 @@
 import http.server
 import socketserver
+from urllib.parse import urlparse, parse_qs
 
 # 设置服务器IP和端口
 HOST = '0.0.0.0'  # 监听所有IP地址
@@ -8,9 +9,29 @@ PORT = 6002        # 端口号
 # 设置静态文件目录
 DIRECTORY = "/mnt/audio/media-separator"
 
+# 固定的secret密钥
+SECRET_KEY = 'pvPYjdmta1szaiETV0Qg'
+
 class StaticFileServe(http.server.SimpleHTTPRequestHandler):
+    def do_GET(self):
+        # 解析URL路径并检查secret参数
+        parsed_path = urlparse(self.path)
+        query_params = parse_qs(parsed_path.query)
+        secret = query_params.get('secert', [None])[0]  # 获取请求中的secert参数
+
+        if secret != SECRET_KEY:
+            # 如果没有提供或提供错误的secert，拒绝访问
+            self.send_response(403)
+            self.send_header("Content-type", "text/html")
+            self.end_headers()
+            self.wfile.write(b"Forbidden: Invalid or missing secret.")
+            return
+
+        # 如果校验通过，继续处理请求
+        super().do_GET()
+
     def translate_path(self, path):
-        # 修改默认的路径来返回自定义的静态文件目录
+        # 调用父类的translate_path方法返回文件路径
         path = super().translate_path(path)
         return path.replace(self.directory, DIRECTORY)
 
