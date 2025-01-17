@@ -39,7 +39,3 @@ curl --location 'http://127.0.0.1:8001/extract_text' \
 
 
 
-ssh root@8.130.117.208
-
-
-Duan123456

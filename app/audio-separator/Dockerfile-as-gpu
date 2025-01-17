@@ -6,13 +6,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN python -m pip install --no-cache-dir --upgrade pip
 RUN --mount=type=cache,target=/root/.cache/pip \
-    pip install --no-cache-dir "audio-separator[gpu]" fastapi aiohttp python-multipart uvicorn
-COPY . .
+    pip install --no-cache-dir "audio-separator[gpu]"
+COPY /usr/local/bin/audio-separator .
 
 # 第二阶段：运行时精简环境
 FROM python:3.11-slim
 
 WORKDIR /app
+
+RUN python -m pip install --no-cache-dir --upgrade pip
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install fastapi aiohttp python-multipart uvicorn
 
 COPY --from=builder /app /app
 
