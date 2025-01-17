@@ -12,9 +12,21 @@ services:
   audio-separator:
     image: eleven9809/as:gpu-v0.1
     container_name: as-gpu
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities:
+                - gpu
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
     volumes:
       - ./data:/tmp
     ports:
       - "6000:6000"
     entrypoint: tail
-    command: ["-f", "/dev/null"]
+    command: [ "-f", "/dev/null" ]

@@ -2,11 +2,24 @@ services:
   audio-separator:
     image: eleven9809/sense-voice:cpu-v0.2
     container_name: sv-cpu
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities:
+                - gpu
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
     volumes:
       - ./iic:/app/iic # 将主机的 ./data 目录挂载到容器内的 /app/data
       - ./example:/app/example
+      - ./app-fastapi.py:/app/app-fastapi.py
     ports:
       - "6001:6001"
     entrypoint: tail
-    command: ["-f", "/dev/null"]
+    command: [ "-f", "/dev/null" ]
 
