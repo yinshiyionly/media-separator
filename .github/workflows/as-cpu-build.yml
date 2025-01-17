@@ -1,4 +1,4 @@
-name: media-separator audio separator build CI
+name: audio separator cpu build CI
 
 on:
   push:
@@ -29,5 +29,5 @@ jobs:
           context: app/audio-separator  # 设置构建上下文为Dockerfile所在目录
           file: app/audio-separator/Dockerfile-as-cpu  # 指定Dockerfile路径
           push: true
-          tags: eleven9809/as:cpu-v0.1
-          platforms: linux/amd64,linux/arm64
+          tags: eleven9809/as:cpu-v1.0
+          platforms: linux/amd64

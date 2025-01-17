@@ -1,24 +1,20 @@
-# 第一阶段：安装依赖和构建
-FROM python:3.11-slim as builder
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    ffmpeg build-essential \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
-RUN python -m pip install --no-cache-dir --upgrade pip
-RUN --mount=type=cache,target=/root/.cache/pip \
-    pip install --no-cache-dir "audio-separator[gpu]"
-
-# 第二阶段：运行时精简环境
+# Use an official Python runtime as a parent image
 FROM python:3.11-slim
 
+# Set the working directory in the container
 WORKDIR /app
 
-RUN python -m pip install --no-cache-dir --upgrade pip
-RUN --mount=type=cache,target=/root/.cache/pip \
-    pip install fastapi aiohttp python-multipart uvicorn
+# Install necessary packages
+RUN apt-get update && apt-get install -y ffmpeg build-essential
 
-COPY --from=builder /usr/local/bin/audio-separator /app
+RUN python -m pip install --upgrade pip
 
-EXPOSE 6000
+RUN --mount=type=cache,target=/root/.cache \
+    pip install "audio-separator[gpu]" fastapi aiohttp python-multipart uvicorn
 
+COPY . /app/
+
+# Run audio-separator when the container launches
+# ENTRYPOINT ["audio-separator"]
+# 执行 Python 脚本
 CMD ["python", "app-fastapi.py"]

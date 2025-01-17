@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile, Form, HTTPException
+from fastapi import FastAPI, UploadFile, Form, HTTPException, File
 from pydantic import BaseModel, HttpUrl
 from audio_separator.separator import Separator
 import traceback
@@ -94,7 +94,7 @@ processor = AudioSeparatorProcessor()
 @app.post("/separate-audio/", response_model=ApiResponse)
 async def separate_audio(
         model: str = Form(...),
-        file: Optional[UploadFile] = None,
+        file: Optional[UploadFile] = File(None),
         url: Optional[str] = Form(None)
 ):
     if not file and not url:

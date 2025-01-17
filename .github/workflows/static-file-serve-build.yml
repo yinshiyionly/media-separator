@@ -1,10 +1,10 @@
-name: audio separator gpu build CI
+name: static file serve build CI
 
 on:
   push:
     paths:
-      - 'app/audio-separator/Dockerfile-as-gpu'
-      - '.github/workflows/as-gpu-build.yml'
+      - 'app/static-file-serve/Dockerfile'
+      - '.github/workflows/static-file-serve-build.yml'
 
 jobs:
   build:
@@ -26,8 +26,8 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
-          context: app/audio-separator  # 设置构建上下文为Dockerfile所在目录
-          file: app/audio-separator/Dockerfile-as-gpu  # 指定Dockerfile路径
+          context: app/static-file-serve  # 设置构建上下文为Dockerfile所在目录
+          file: app/static-file-serve/Dockerfile  # 指定Dockerfile路径
           push: true
-          tags: eleven9809/as:gpu-v1.0
+          tags: eleven9809/static-file-serve:v0.1
           platforms: linux/amd64

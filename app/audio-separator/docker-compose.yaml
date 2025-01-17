@@ -1,9 +1,12 @@
+# cpu service
 #services:
 #  audio-separator:
 #    image: eleven9809/as:cpu-v0.1
 #    container_name: as-cpu
 #    volumes:
 #      - ./data:/tmp
+#    ports:
+#      - "6000:6000"
 #    entrypoint: tail
 #    command: ["-f", "/dev/null"]
 

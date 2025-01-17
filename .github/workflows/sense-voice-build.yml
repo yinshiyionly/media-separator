@@ -1,4 +1,4 @@
-name: media-separator sense voice build CI
+name: sense voice build CI
 
 on:
   push:
@@ -29,5 +29,5 @@ jobs:
           context: app/sense-voice  # 设置构建上下文为Dockerfile所在目录
           file: app/sense-voice/Dockerfile-sense-voice  # 指定Dockerfile路径
           push: true
-          tags: eleven9809/sense-voice:cpu-v0.2
-          platforms: linux/amd64,linux/arm64
+          tags: eleven9809/sense-voice:cpu-v1.0
+          platforms: linux/amd64

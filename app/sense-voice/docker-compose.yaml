@@ -18,6 +18,7 @@ services:
       - ./iic:/app/iic # 将主机的 ./data 目录挂载到容器内的 /app/data
       - ./example:/app/example
       - ./app-fastapi.py:/app/app-fastapi.py
+      - ./model.py:/app/model.py
     ports:
       - "6001:6001"
     entrypoint: tail

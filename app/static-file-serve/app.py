@@ -1,16 +1,21 @@
 import http.server
 import socketserver
 from urllib.parse import urlparse, parse_qs
+import os
+from dotenv import load_dotenv
+
+# 加载 .env 文件
+load_dotenv()
 
 # 设置服务器IP和端口
 HOST = '0.0.0.0'  # 监听所有IP地址
 PORT = 6002        # 端口号
 
-# 设置静态文件目录
+# 从环境变量中获取 SECRET_KEY
 DIRECTORY = "/mnt/audio/media-separator"
 
 # 固定的secret密钥
-SECRET_KEY = 'pvPYjdmta1szaiETV0Qg'
+SECRET_KEY = os.getenv('SECRET_KEY', 'default_secret')
 
 class StaticFileServe(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
