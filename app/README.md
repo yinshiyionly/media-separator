@@ -32,11 +32,3 @@ curl --location 'http://127.0.0.1:8000/separate-audio/' \
 # 音频文件提取文字
 curl --location 'http://127.0.0.1:8001/extract_text' \
 --form 'url="https://ad-page.cdn.bcebos.com/test-UVR-vocal.wav"'
-
-
-
-
-
-
-
-

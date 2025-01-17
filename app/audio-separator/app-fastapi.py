@@ -134,7 +134,7 @@ async def separate_audio(
 
         return {
             "message": "Audio separation completed successfully",
-            "output_files": [f"http://8.130.117.208:6002/audio-separator/data/audio-separator-outputs/{output_files[0]}/?secret=ngTrHcTboVfQ"],
+            "output_files": [f"http://8.130.117.208:6002/audio-separator/data/audio-separator-outputs/{output_files[0]}"],
         }
 
     except Exception as e:
