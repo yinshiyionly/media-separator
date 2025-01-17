@@ -5,6 +5,8 @@ services:
     volumes:
       - ./iic:/app/iic # 将主机的 ./data 目录挂载到容器内的 /app/data
       - ./example:/app/example
+    ports:
+      - "6001:6001"
     entrypoint: tail
     command: ["-f", "/dev/null"]
 

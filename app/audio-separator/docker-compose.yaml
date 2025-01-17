@@ -14,5 +14,7 @@ services:
     container_name: as-gpu
     volumes:
       - ./data:/tmp
+    ports:
+      - "6000:6000"
     entrypoint: tail
     command: ["-f", "/dev/null"]
