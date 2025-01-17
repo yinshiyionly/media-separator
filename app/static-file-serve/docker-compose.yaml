@@ -4,6 +4,7 @@ services:
     container_name: sfs
     volumes:
       - ../../app:/mnt/audio
+      - ./app.py:/app/app.py
     ports:
       - "6002:6002"
     command: [ "python", "/app/app.py" ]
