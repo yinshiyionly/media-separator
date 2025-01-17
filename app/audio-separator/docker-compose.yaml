@@ -13,7 +13,7 @@
 # gpu service
 services:
   audio-separator:
-    image: eleven9809/as:gpu-v0.1
+    image: eleven9809/as:gpu-v1.0
     container_name: as-gpu
     runtime: nvidia
     deploy:

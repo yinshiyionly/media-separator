@@ -1,6 +1,6 @@
 services:
   audio-separator:
-    image: eleven9809/sense-voice:cpu-v0.2
+    image: eleven9809/sense-voice:cpu-v1.0
     container_name: sv-cpu
     runtime: nvidia
     deploy:
