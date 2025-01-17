@@ -1,0 +1,16 @@
+# 第一阶段：安装依赖和构建
+FROM python:3.11-slim as builder
+WORKDIR /app
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ffmpeg build-essential \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN python -m pip install --no-cache-dir --upgrade pip
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install --no-cache-dir "audio-separator[gpu]" fastapi aiohttp python-multipart uvicorn
+COPY . .
+
+# 第二阶段：运行时精简环境
+FROM python:3.11-slim
+WORKDIR /app
+COPY --from=builder /app /app
+CMD ["python", "app-fastapi.py"]
