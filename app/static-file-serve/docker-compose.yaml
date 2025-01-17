@@ -5,6 +5,7 @@ services:
     volumes:
       - ../../app:/mnt/audio
       - ./app.py:/app/app.py
+      - ./.env:/app/.env
     ports:
       - "6002:6002"
     command: [ "python", "/app/app.py" ]
