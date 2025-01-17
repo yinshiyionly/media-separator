@@ -1,3 +1,16 @@
+## Media Separator
+> 音视频文案提取
+
+### 步骤
+1. 使用 audio-separator 将音视频进行人声分离,分离出两个音频文件 vocal.wav 和 other.wav
+2. 使用 sense-voice 将
+
+
+
+
+
+
+
 1. 统一端口号 8000 8001
 2. sv 缺少 aiohttp
 3. 代码文件映射
