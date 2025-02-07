@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
+import os
 from routes import router
 from config import settings
 
@@ -18,6 +19,20 @@ app.add_middleware(
 
 # 引用路由
 app.include_router(router)
+
+# 确保目录存在
+dirs_to_check = [
+    settings.MODEL_DIR,
+    settings.OUTPUT_DIR,
+    settings.TEMP_DIR
+]
+
+for directory in dirs_to_check:
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+        print(f"目录 {directory} 已创建")
+    else:
+        print(f"目录 {directory} 已存在")
 
 # 启动服务
 if __name__ == "__main__":

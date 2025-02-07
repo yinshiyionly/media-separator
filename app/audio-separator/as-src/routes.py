@@ -68,7 +68,7 @@ async def separate_audio(
         error_message = str(e)
         new_logger.error(f"Request failed - request_id: {request_id}, error: {error_message}")
     except Exception as e:
-        error_message = "Internal server error"
+        error_message = str(e)
         new_logger.error(f"Unexpected error - request_id: {request_id}, error: {e}")
 
     processing_time = time.time() - start_time
