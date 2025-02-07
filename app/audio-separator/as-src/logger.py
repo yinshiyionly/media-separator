@@ -19,10 +19,10 @@ class CustomLogger:
         os.makedirs(log_dir, exist_ok=True)
 
         # 设置日志文件路径
-        log_file = os.path.join(log_dir, f'video_editor_{day}.log')
+        log_file = os.path.join(log_dir, f'audio_separator{day}.log')
 
         # 创建logger
-        self.logger = logging.getLogger('video_editor')
+        self.logger = logging.getLogger('audio-separator')
         self.logger.setLevel(logging.DEBUG)
 
         # 创建文件处理器
