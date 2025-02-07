@@ -3,7 +3,7 @@ services:
     image: eleven9809/static-file-serve:v0.1
     container_name: sfs
     volumes:
-      - ../../app:/mnt/audio
+      - ./static:/opt
       - ./app.py:/app/app.py
     ports:
       - "6002:6002"

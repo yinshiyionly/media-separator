@@ -10,7 +10,7 @@ class Settings:
     TEMP_DIR = os.getenv("TEMP_DIR", "/tmp/audio-separator-temp")
     MAX_FILE_SIZE = int(os.getenv("MAX_FILE_SIZE", 100 * 1024 * 1024))  # 100MB
     ALLOWED_EXTENSIONS = {'.mp3', '.wav', '.flac', '.m4a', '.ogg'}
-    BASE_URL = os.getenv("BASE_URL", "http://8.130.117.208:6002")
+    STATIC_SERVE_URL = os.getenv("STATIC_SERVE_URL", "http://101.200.146.208:6002")
     PORT = int(os.getenv("PORT", 6000))  # 确保端口是整数
 
 settings = Settings()

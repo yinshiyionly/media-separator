@@ -1,5 +1,4 @@
 import os
-
 import logger
 import uuid
 import time
@@ -52,7 +51,7 @@ async def separate_audio(
 
         response = ApiResponse(
             message="Audio separation completed successfully",
-            output_files=[f"{settings.BASE_URL}/{file}" for file in output_files],
+            output_files=[f"{settings.STATIC_SERVE_URL}/{settings.OUTPUT_DIR}/{file}" for file in output_files],
             request_id=request_id,
             processing_time=processing_time
         )
