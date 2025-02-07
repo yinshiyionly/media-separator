@@ -1,7 +1,7 @@
 services:
   audio-separator:
     image: eleven9809/as:gpu-v1.0
-    container_name: as-gpu
+    container_name: new-as-gpu
     runtime: nvidia
     deploy:
       resources:
@@ -18,6 +18,6 @@ services:
       - ../../static/file-serve/static:/tmp
       - ./:/app
     ports:
-      - "6000:6000"
+      - "6005:6000"
     #    entrypoint: tail
-    command: [ "python", "/app/app-fastapi.py" ]
+    command: [ "python", "/app/main.py" ]
