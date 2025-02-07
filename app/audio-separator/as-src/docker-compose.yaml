@@ -19,5 +19,6 @@ services:
       - ./:/app
     ports:
       - "6005:6000"
-    #    entrypoint: tail
-    command: [ "python", "/app/main.py" ]
+    entrypoint: tail
+    # command: [ "python", "/app/main.py" ]
+    command: [ "-f", "/dev/null" ]
