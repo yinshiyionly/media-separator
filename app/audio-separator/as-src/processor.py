@@ -1,6 +1,5 @@
 import os
 import uuid
-import logger
 import aiohttp
 from fastapi import HTTPException
 
@@ -48,4 +47,9 @@ class AudioSeparatorProcessor:
     def process_audio(self, input_file: str, model: str, request_id: str):
         """处理音频"""
         self.separator.load_model(model_filename=model)
-        return self.separator.separate(input_file)
+        # 自定义分离后的人声文件命名格式
+        output_names = {
+            "Vocals": f"vocals_output_{request_id}",
+            # "Instrumental": f"instrumental_output_{random_str}"
+        }
+        return self.separator.separate(input_file, output_names)

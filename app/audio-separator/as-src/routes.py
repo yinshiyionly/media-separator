@@ -1,3 +1,5 @@
+import os
+
 import logger
 import uuid
 import time
@@ -14,13 +16,16 @@ processor = AudioSeparatorProcessor()
 
 new_logger = logger.CustomLogger()
 
+
 @router.post("/separate-audio/", response_model=ApiResponse)
 async def separate_audio(
         model: str = Form(...),
         file: UploadFile = File(None),
         url: str = Form(None),
 ):
+    # 唯一请求ID
     request_id = uuid.uuid4().hex
+    # 记录开始时间
     start_time = time.time()
 
     try:
@@ -33,8 +38,15 @@ async def separate_audio(
         if file and url:
             raise ValueError("Provide either file or url, not both")
 
+        # 处理 url/file 保存到临时目录中
         temp_file_path = await processor.handle_input(file, url, request_id)
+        # 处理音视频文件返回人声音频文件地址
         output_files = processor.process_audio(temp_file_path, model, request_id)
+        new_logger.info(
+            f"remove temp file: {temp_file_path}")
+        # 删除临时文件
+        if temp_file_path and os.path.exists(temp_file_path):
+            os.remove(temp_file_path)
 
         processing_time = time.time() - start_time
 
